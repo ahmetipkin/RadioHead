@@ -17,7 +17,6 @@
 /// hardware SPI interfaces.
 class RHHardwareSPI : public RHGenericSPI
 {
-#ifdef RH_HAVE_HARDWARE_SPI
 public:
     /// Constructor
     /// Creates an instance of a hardware SPI interface, using whatever SPI hardware is available on
@@ -27,7 +26,7 @@ public:
     /// \param[in] bitOrder Select the SPI bus bit order, one of RHGenericSPI::BitOrderMSBFirst or 
     /// RHGenericSPI::BitOrderLSBFirst.
     /// \param[in] dataMode Selects the SPI bus data mode. One of RHGenericSPI::DataMode
-    RHHardwareSPI(Frequency frequency = Frequency1MHz, BitOrder bitOrder = BitOrderMSBFirst, DataMode dataMode = DataMode0);
+    RHHardwareSPI(Frequency frequency = Frequency4MHz, BitOrder bitOrder = BitOrderMSBFirst, DataMode dataMode = DataMode0);
 
     /// Transfer a single octet to and from the SPI interface
     /// \param[in] data The octet to send
@@ -52,19 +51,11 @@ public:
     /// Disables the SPI bus (leaving pin modes unchanged). 
     /// Call this after you have finished using the SPI interface.
     void end();
- #if (RH_PLATFORM == RH_PLATFORM_ARDUINO) && defined(SPI_HAS_TRANSACTION)
 public:
     void beginTransaction();
     void endTransaction();
    SPISettings  _settings;
- #endif
-#else
-    // not supported on ATTiny etc
-    uint8_t transfer(uint8_t data) {return 0;}
-    void begin(){}
-    void end(){}
 
-#endif
 };
 
 // Built in default instance

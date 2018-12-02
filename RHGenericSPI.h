@@ -9,9 +9,7 @@
 
 #include <RadioHead.h>
 
-#if (RH_PLATFORM == RH_PLATFORM_ARDUINO)
 #include <SPI.h> // for SPI_HAS_TRANSACTION and SPISettings
-#endif
 
 /////////////////////////////////////////////////////////////////////
 /// \class RHGenericSPI RHGenericSPI.h <RHGenericSPI.h>
@@ -86,7 +84,7 @@ public:
     /// \param[in] bitOrder Select the SPI bus bit order, one of RHGenericSPI::BitOrderMSBFirst or 
     /// RHGenericSPI::BitOrderLSBFirst.
     /// \param[in] dataMode Selects the SPI bus data mode. One of RHGenericSPI::DataMode
-    RHGenericSPI(Frequency frequency = Frequency1MHz, BitOrder bitOrder = BitOrderMSBFirst, DataMode dataMode = DataMode0);
+    RHGenericSPI(Frequency frequency = Frequency4MHz, BitOrder bitOrder = BitOrderMSBFirst, DataMode dataMode = DataMode0);
 
     /// Transfer a single octet to and from the SPI interface
     /// \param[in] data The octet to send

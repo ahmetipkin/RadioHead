@@ -7,6 +7,8 @@
 #ifndef RASPI_h
 #define RASPI_h
 
+#if (RH_PLATFORM == RH_PLATFORM_RASPI)
+
 #include <bcm2835.h>
 
 #include <stdio.h>
@@ -72,4 +74,5 @@ void delay (unsigned long delay);
 
 long random(long min, long max);
 
+#endif
 #endif
